@@ -8,6 +8,9 @@ import (
 	"os"
 )
 
+//https://adventofcode.com/2023/day/1/answer
+//body: level: <number> answer: <answer>
+
 func GetPussleInput(year string, day string) (input string) {
 	url := fmt.Sprintf("https://adventofcode.com/%s/day/%s/input", year, day)
 	return readBody(callAdvent(url))
