@@ -16,7 +16,7 @@ type match struct {
 	number int
 }
 
-func(trebuchet *Trebuchet) Task1(data string) int {
+func(trebuchet *Trebuchet) Task1(data string) string {
 	scanner := bufio.NewScanner(strings.NewReader(data))
 	first := regexp.MustCompile("[0-9]")
 	last := regexp.MustCompile("([0-9])[^0-9]*$")
@@ -27,10 +27,10 @@ func(trebuchet *Trebuchet) Task1(data string) int {
 		number, _ := strconv.Atoi(f + l)
 		sum += number
 	}
-	return sum
+	return strconv.Itoa(sum)
 }
 
-func(trebuchet *Trebuchet) Task2(data string) int {
+func(trebuchet *Trebuchet) Task2(data string) string {
 	sum := 0
 	scanner := bufio.NewScanner(strings.NewReader(data))
 	num := []string{"0", "zero", "1", "one", "2", "two", "3", "three", "4", "four", "5", "five", "6", "six", "7", "seven", "8", "eight", "9", "nine"}
@@ -55,5 +55,5 @@ func(trebuchet *Trebuchet) Task2(data string) int {
 		}
 		sum += first.number*10 + last.number
 	}
-	return sum
+	return strconv.Itoa(sum)
 }
