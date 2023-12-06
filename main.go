@@ -9,8 +9,8 @@ import (
 )
 
 var year string = "2023"
-var day string = "5"
-var task string = "0"
+var day string = "6"
+var task string = "2"
 
 func main() {
 	for i, arg := range os.Args {

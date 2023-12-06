@@ -13,7 +13,7 @@ func GetSolver(day int) Solver {
 	s3 := &GearRatios{solve}
 	s4 := &ScratchCards{solve}
 	s5 := &Fertilizer{solve}
-
-	solvers := []Solver{Solver(s1), Solver(s2), Solver(s3), Solver(s4), Solver(s5)}
+	s6 := &WaitForIt{solve}
+	solvers := []Solver{Solver(s1), Solver(s2), Solver(s3), Solver(s4), Solver(s5), Solver(s6)}
 	return solvers[day-1]
 }
