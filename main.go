@@ -9,7 +9,7 @@ import (
 )
 
 var year string = "2023"
-var day string = "4"
+var day string = "5"
 var task string = "0"
 
 func main() {
