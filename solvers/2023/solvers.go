@@ -15,6 +15,8 @@ func GetSolver(day int) Solver {
 	s5 := &Fertilizer{solve}
 	s6 := &WaitForIt{solve}
 	s7 := &CamelCards{solve}
-	solvers := []Solver{Solver(s1), Solver(s2), Solver(s3), Solver(s4), Solver(s5), Solver(s6), Solver(s7)}
+	s8 := &HauntedWasteland{solve}
+	s9 := &MirageMaintenance{solve}
+	solvers := []Solver{Solver(s1), Solver(s2), Solver(s3), Solver(s4), Solver(s5), Solver(s6), Solver(s7), Solver(s8), Solver(s9)}
 	return solvers[day-1]
 }
