@@ -10,8 +10,8 @@ import (
 
 var year string = "2023"
 var day string = "10"
-var task string = "2"
-var test bool = true
+var task string = "0"
+var test bool = false
 
 func main() {
 	for i, arg := range os.Args {
@@ -39,17 +39,7 @@ func main() {
 			fmt.Printf("Task2: %s\t[%s]\n", task2, taskmaster.PostAnswer(year, day, "2", task2))
 		}
 	} else {
-		data := `
-.F----7F7F7F7F-7....
-.|F--7||||||||FJ....
-.||.FJ||||||||L7....
-FJL7L7LJLJ||LJ.L-7..
-L--J.L7...LJS7F-7L7.
-....F-J..F7FJ|L7L7L7
-....L7.F7||L7|.L7L7|
-.....|FJLJ|FJ|F7|.LJ
-....FJL-7.||.||||...
-....L---J.LJ.LJLJ...`
+		data := ``
 		if task == "1" || task == "0" {
 			task1 := solvers.GetSolver(iday).Task1(data)
 			fmt.Printf("Task1: %s\t[%s]\n", task1, "nil")

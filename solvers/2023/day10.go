@@ -1,7 +1,6 @@
 package solvers
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -14,6 +13,15 @@ type Pipe struct {
 	pos    []int
 	before []int
 	after  []int
+}
+
+func (pipeMaze PipeMaze) ContainsPipe(i int, j int, loop []Pipe) bool {
+	for _, p := range loop {
+		if p.pos[0] == i && p.pos[1] == j {
+			return true
+		}
+	}
+	return false
 }
 
 func (pipeMaze PipeMaze) Walk(start []int, pipes [][]rune, direction []int) ([]Pipe, bool) {
@@ -84,118 +92,35 @@ func (pipeMaze PipeMaze) Walk(start []int, pipes [][]rune, direction []int) ([]P
 
 func (pipeMaze PipeMaze) getNest(loop_pipes []Pipe, pipes [][]rune) int {
 	ra := false
-	found := false
 	nest := 0
-	start_pos := 0
-	start := Pipe{}
 	n_r := len(pipes)
 	r_l := len(pipes[0])
-	first_direction := 0
 	for i := 0; i < n_r; i++ {
-		first_direction = 0
+		ra = false
 		for j := 0; j < r_l; j++ {
-			found = false
-			for _, p := range loop_pipes {
-				if p.pos[0] == i && p.pos[1] == j {
-					found = true
-					if pipes[i][j] == '-' {
-						break
-					}
-					if !ra {
-						if first_direction == 0 && p.before[0] == p.after[0] {
-							ra = true
-							if p.before[0] == -1 {
-								first_direction = 1
-							} else {
-								first_direction = 2
-							}
-						} else if first_direction == 0 && p.before[0] == 0 {
-							first_direction = 1
-							start_pos = p.after[0]
-						} else if first_direction == 0 && p.after[0] == 0 {
-							first_direction = 2
-							start_pos = p.before[0]
-						}
-						start = p
-						if pipes[i][j] == 'L' {
-						  fmt.Println(first_direction, start_pos, start)
-						}
-						fmt.Print(":")
-						ra = true
-						break
-					} else {
-						if start.before[0] == p.after[0] && start.before[1] == p.after[1] || start.after[0] == p.before[0] && start.after[1] == p.before[1] {
-							ra = false
-							fmt.Print(string(pipes[i][j]), ";")
-							break
-						} else if first_direction == 1 && p.before[0] != 0 && p.before[0] != start_pos {
-						  fmt.Print(string(pipes[i][j]), ";")
-							ra = false
-							break
-						} else if first_direction == 2 && p.after[0] != 0 && p.after[0] != start_pos {
-							fmt.Print(string(pipes[i][j]), ";")
-							ra = false
-							break
-						} else if p.after[0] != 0 || p.before[0] != 0 {
-							ra = false
-							fmt.Print(string(pipes[i][j]), ";")
-							first_direction = 0
+			if pipeMaze.ContainsPipe(i, j, loop_pipes) {
+				char := pipes[i][j]
+				if char == '|' {
+					ra = !ra
+				} else if char == 'L' || char == 'F' { //If the pipe turns to the search direction
+					next := 0
+					for _, dash := range pipes[i][j+1:] {
+						next += 1
+						if dash != '-' {
 							break
 						}
 					}
-					/*if !ra {
-						if p.before[0] != 0 {
-							start_pos = p.before[0]
-							ra = true
-							break
-						} else if p.after[0] != 0 {
-							start_pos = p.after[0]
-							ra = true
-							break
-						}
-					} else {
-						temp := 0
-						if p.before[0] != 0 {
-							temp = p.before[0]
-						} else if p.after[0] != 0 {
-							temp = p.after[0]
-						}
-						if temp != 0 && temp != start_pos {
-							fmt.Print(string(pipes[i][j]), temp, start_pos)
-							switch start_pos {
-							case 1:
-								if temp == -1 {
-									ra = false
-									break
-								}
-							case -1:
-								if temp == 1 {
-									ra = false
-									break
-								}
-							}
-						}
+					j += next
+					next_char := pipes[i][j]
+					if (char == 'L' && next_char == '7') || // check if we have an s bend or a u bend
+						(char == 'F' && next_char == 'J') { // a u bend would not change ra ti inside or outside
+						ra = !ra
 					}
-					if ra {
-						fmt.Println(start_pos)
-					}
-					if ra && p.after[0] != 0 {
-						if start_pos != p.before[0] || start_pos != p.after[0] {
-							ra = false
-							fmt.Print(string(pipes[i][j]))
-						}
-					}*/
 				}
-			}
-			if ra {
-				fmt.Print(string(pipes[i][j]))
-			}
-			if ra && !found {
-				fmt.Print(ra)
+			} else if ra {
 				nest += 1
 			}
 		}
-		fmt.Println()
 	}
 	return nest
 }
@@ -223,7 +148,6 @@ func (pipeMaze *PipeMaze) Task1(data string) string {
 	}
 	direction := []int{0, 1}
 	ret, found := pipeMaze.Walk([]int{start[0] + direction[0], start[1] + direction[1]}, pipes, direction)
-	fmt.Println(ret)
 	if found {
 		return strconv.Itoa(len(ret) / 2)
 	} else {
@@ -253,6 +177,5 @@ func (pipeMaze *PipeMaze) Task2(data string) string {
 	}
 	direction := []int{0, 1}
 	ret, _ := pipeMaze.Walk([]int{start[0] + direction[0], start[1] + direction[1]}, pipes, direction)
-	fmt.Println(ret)
-	return strconv.Itoa(pipeMaze.getNest(ret, pipes[:3]))
+	return strconv.Itoa(pipeMaze.getNest(ret, pipes))
 }
