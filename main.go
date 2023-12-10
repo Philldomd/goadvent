@@ -9,7 +9,7 @@ import (
 )
 
 var year string = "2023"
-var day string = "8"
+var day string = "9"
 var task string = "0"
 var test bool = false
 
