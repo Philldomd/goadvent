@@ -45,18 +45,18 @@ func (scratchCards *ScratchCards) Task2(data string) string {
 		if len(card) == 0 {
 			continue
 		}
-		split := strings.Split(strings.Split(card, ":")[1] , "|")
+		split := strings.Split(strings.Split(card, ":")[1], "|")
 		s := 0
 		for _, num := range strings.Fields(split[1]) {
 			for _, v := range strings.Fields(split[0]) {
 				if num == v {
-						s += 1
+					s += 1
 				}
 			}
 		}
 		mult[r] += 1
-		for j := r + 1; j < r + s + 1; j++ {
-      mult[j] += mult[r]
+		for j := r + 1; j < r+s+1; j++ {
+			mult[j] += mult[r]
 		}
 	}
 	for _, x := range mult {

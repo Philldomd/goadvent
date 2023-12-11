@@ -10,7 +10,7 @@ type GearRatios struct {
 	Solve
 }
 
-func rowCheck(lines []string, row int, column int, substring string) int {
+func (gearratios GearRatios) rowCheck(lines []string, row int, column int, substring string) int {
 	upperBound := row - 1
 	lowerBound := row + 1
 	leftBound := column - len(substring)
@@ -33,7 +33,7 @@ func rowCheck(lines []string, row int, column int, substring string) int {
 	return 0
 }
 
-func gearRatioCheck(lines []string, row int, column int) int {
+func (gearratios GearRatios) gearRatioCheck(lines []string, row int, column int) int {
 	numbers := []int{}
 	upperBound := row - 1
 	lowerBound := row + 1
@@ -118,13 +118,13 @@ func (gearratios *GearRatios) Task1(data string) string {
 				j++
 				for _, n := range row[j:] {
 					if !unicode.IsDigit(n) {
-						ans += rowCheck(lines, i, j-1, substring)
+						ans += gearratios.rowCheck(lines, i, j-1, substring)
 						break
 					} else {
 						j++
 						substring = substring + string(n)
 						if j == len(row) {
-							ans += rowCheck(lines, i, j-1, substring)
+							ans += gearratios.rowCheck(lines, i, j-1, substring)
 						}
 					}
 				}
@@ -147,7 +147,7 @@ func (gearratios *GearRatios) Task2(data string) string {
 		for j := 0; j < len(row); j++ {
 			r := string(row[j])
 			if r == symbol {
-				sum += gearRatioCheck(lines, i, j)
+				sum += gearratios.gearRatioCheck(lines, i, j)
 			}
 		}
 	}

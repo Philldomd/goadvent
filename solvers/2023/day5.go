@@ -58,7 +58,7 @@ func (fertilizer *Fertilizer) Task2(data string) string {
 	for _, r := range rows {
 		temp_matrix := []int{}
 		for _, m := range strings.Split(strings.Split(r, ":")[1], "\n") {
-      matrix := strings.Fields(m)
+			matrix := strings.Fields(m)
 			if len(matrix) == 0 {
 				continue
 			}
@@ -68,21 +68,21 @@ func (fertilizer *Fertilizer) Task2(data string) string {
 			seed_matrix = append(seed_matrix, []int{n1, n2, n3})
 		}
 		seed_matrix = append(seed_matrix, temp_matrix)
-  }
-	for i := 0; i < len(seeds); i+=2 {
-    min := MaxInt
-    start := seeds[i]
+	}
+	for i := 0; i < len(seeds); i += 2 {
+		min := MaxInt
+		start := seeds[i]
 		number := seeds[i+1]
-		for j := start; j < start + number; j++ {
+		for j := start; j < start+number; j++ {
 			min_temp := j
 			found := false
-		  for _, m := range seed_matrix {
+			for _, m := range seed_matrix {
 				if len(m) == 0 {
 					found = false
 					continue
 				}
 				if !found {
-					if min_temp >= m[1] && min_temp <= m[1] + m[2] - 1 {
+					if min_temp >= m[1] && min_temp <= m[1]+m[2]-1 {
 						found = true
 						min_temp = m[0] + min_temp - m[1]
 					}

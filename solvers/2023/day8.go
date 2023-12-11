@@ -10,41 +10,41 @@ type HauntedWasteland struct {
 	Solve
 }
 
-func GCD(a, b int) int {
+func (hauntedWasteland HauntedWasteland) GCD(a, b int) int {
 	for b != 0 {
-					t := b
-					b = a % b
-					a = t
+		t := b
+		b = a % b
+		a = t
 	}
 	return a
 }
 
 // find Least Common Multiple (LCM) via GCD
-func LCM(a, b int, integers ...int) int {
-	result := a * b / GCD(a, b)
+func (hauntedWasteland HauntedWasteland) LCM(a, b int, integers ...int) int {
+	result := a * b / hauntedWasteland.GCD(a, b)
 
 	for i := 0; i < len(integers); i++ {
-					result = LCM(result, integers[i])
+		result = hauntedWasteland.LCM(result, integers[i])
 	}
 
 	return result
 }
 
 type Node struct {
-	value string
-	L     string
-	IL    int
-	R     string
-	IR    int
+	value      string
+	L          string
+	IL         int
+	R          string
+	IR         int
 	start_stop int
 }
 
-func walk_list(instruction []rune, nl []Node) int {
+func (hauntedWasteland HauntedWasteland) walk_list(instruction []rune, nl []Node) int {
 	index := 0
 	node := Node{}
 	for i, first := range nl {
-		if first.value == "AAA"{
-  	  node = nl[i]
+		if first.value == "AAA" {
+			node = nl[i]
 		}
 	}
 	depth := 0
@@ -60,14 +60,14 @@ func walk_list(instruction []rune, nl []Node) int {
 		if index == len(instruction) {
 			index = 0
 		}
-  }
+	}
 	return depth
 }
 
-func walk_list_stop(instruction []rune, nl []Node) int {
+func (hauntedWasteland HauntedWasteland) walk_list_stop(instruction []rune, nl []Node) int {
 	loops := []int{}
 	node := Node{}
-  for _, n := range nl {
+	for _, n := range nl {
 		if n.start_stop != 2 {
 			continue
 		}
@@ -89,15 +89,15 @@ func walk_list_stop(instruction []rune, nl []Node) int {
 		}
 		loops = append(loops, depth)
 	}
-	return LCM(loops[0], loops[1], loops...)
+	return hauntedWasteland.LCM(loops[0], loops[1], loops...)
 }
 
-func(node Node) indexOf(list []Node) Node {
+func (node Node) indexOf(list []Node) Node {
 	r_node := node
 	for i, n := range list {
-    if n.value == node.L {
+		if n.value == node.L {
 			r_node.IL = i
-		} 
+		}
 		if n.value == node.R {
 			r_node.IR = i
 		}
@@ -106,7 +106,7 @@ func(node Node) indexOf(list []Node) Node {
 }
 
 func (hauntedWasteland *HauntedWasteland) CreateNodeList(rows []string) []Node {
-  nodes := []Node{}
+	nodes := []Node{}
 	re := regexp.MustCompile(`([0-Z]+)`)
 	for _, r := range rows {
 		if len(r) == 0 {
@@ -129,23 +129,23 @@ func (hauntedWasteland *HauntedWasteland) CreateNodeList(rows []string) []Node {
 		nodes = append(nodes, node)
 	}
 	for i, node := range nodes {
-	  nodes[i] = node.indexOf(nodes)
+		nodes[i] = node.indexOf(nodes)
 	}
 	return nodes
 }
 
 func (hauntedWasteland *HauntedWasteland) Task1(data string) string {
 	temp := strings.Split(data, "\n\n")
-  instructions := []rune(temp[0])
+	instructions := []rune(temp[0])
 	rows := strings.Split(temp[1], "\n")
-	sum := walk_list(instructions, hauntedWasteland.CreateNodeList(rows))
+	sum := hauntedWasteland.walk_list(instructions, hauntedWasteland.CreateNodeList(rows))
 	return strconv.Itoa(sum)
 }
 
 func (hauntedWasteland *HauntedWasteland) Task2(data string) string {
 	temp := strings.Split(data, "\n\n")
-  instructions := []rune(temp[0])
+	instructions := []rune(temp[0])
 	rows := strings.Split(temp[1], "\n")
-  sum := walk_list_stop(instructions, hauntedWasteland.CreateNodeList(rows))
+	sum := hauntedWasteland.walk_list_stop(instructions, hauntedWasteland.CreateNodeList(rows))
 	return strconv.Itoa(sum)
 }

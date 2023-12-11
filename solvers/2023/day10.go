@@ -113,7 +113,7 @@ func (pipeMaze PipeMaze) getNest(loop_pipes []Pipe, pipes [][]rune) int {
 					j += next
 					next_char := pipes[i][j]
 					if (char == 'L' && next_char == '7') || // check if we have an s bend or a u bend
-						(char == 'F' && next_char == 'J') { // a u bend would not change ra ti inside or outside
+						(char == 'F' && next_char == 'J') { // a u bend would not change ra to inside or outside
 						ra = !ra
 					}
 				}

@@ -10,7 +10,7 @@ type MirageMaintenance struct {
 }
 
 func (mirageMaintenance MirageMaintenance) reverseInts(in []int) []int {
-	for i, j := 0, len(in)-1; i<j; i, j = i+1, j-1 {
+	for i, j := 0, len(in)-1; i < j; i, j = i+1, j-1 {
 		in[i], in[j] = in[j], in[i]
 	}
 	return in

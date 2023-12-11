@@ -8,15 +8,15 @@ import (
 )
 
 type Trebuchet struct {
-  Solve
+	Solve
 }
 
 type match struct {
-	index int
+	index  int
 	number int
 }
 
-func(trebuchet *Trebuchet) Task1(data string) string {
+func (trebuchet *Trebuchet) Task1(data string) string {
 	scanner := bufio.NewScanner(strings.NewReader(data))
 	first := regexp.MustCompile("[0-9]")
 	last := regexp.MustCompile("([0-9])[^0-9]*$")
@@ -30,7 +30,7 @@ func(trebuchet *Trebuchet) Task1(data string) string {
 	return strconv.Itoa(sum)
 }
 
-func(trebuchet *Trebuchet) Task2(data string) string {
+func (trebuchet *Trebuchet) Task2(data string) string {
 	sum := 0
 	scanner := bufio.NewScanner(strings.NewReader(data))
 	num := []string{"0", "zero", "1", "one", "2", "two", "3", "three", "4", "four", "5", "five", "6", "six", "7", "seven", "8", "eight", "9", "nine"}

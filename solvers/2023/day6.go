@@ -20,15 +20,15 @@ func (waitForIt *WaitForIt) Task1(data string) string {
 		switch strings.Split(r, ":")[0] {
 		case "Time":
 			fields := strings.Fields(strings.Split(r, ":")[1])
-      for i := 0; i < len(fields); i++ {
+			for i := 0; i < len(fields); i++ {
 				it, _ := strconv.Atoi(fields[i])
-        time = append(time, it)
+				time = append(time, it)
 			}
 		case "Distance":
 			fields := strings.Fields(strings.Split(r, ":")[1])
 			for i := 0; i < len(fields); i++ {
 				id, _ := strconv.Atoi(fields[i])
-        distance = append(distance, id)
+				distance = append(distance, id)
 			}
 		}
 	}
@@ -37,18 +37,18 @@ func (waitForIt *WaitForIt) Task1(data string) string {
 		l := 0
 		even := false
 		if time[i]%2 == 1 {
-		  l = (time[i]/2)+1 
+			l = (time[i] / 2) + 1
 		} else {
 			even = true
- 			l = time[i]/2
+			l = time[i] / 2
 		}
 		for j := 0; j < l; j++ {
-			if j * (time[i] - j) > distance[i] {
+			if j*(time[i]-j) > distance[i] {
 				w += 2
 			}
 		}
 		if even {
-			if l * (time[i] - l) > distance[i] {
+			if l*(time[i]-l) > distance[i] {
 				w++
 			}
 		}
@@ -56,7 +56,7 @@ func (waitForIt *WaitForIt) Task1(data string) string {
 	}
 	w := 1
 	for _, win := range winning {
-    w *= win
+		w *= win
 	}
 	return strconv.Itoa(w)
 }
@@ -65,5 +65,5 @@ func (waitForIt *WaitForIt) Task2(data string) string {
 	re, _ := regexp.Compile(`[[:blank:]]`)
 	data = re.ReplaceAllString(data, "")
 	fmt.Println(data)
-  return waitForIt.Task1(data)
+	return waitForIt.Task1(data)
 }
