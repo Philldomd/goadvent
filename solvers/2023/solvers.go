@@ -18,6 +18,12 @@ func GetSolver(day int) Solver {
 	s8 := &HauntedWasteland{solve}
 	s9 := &MirageMaintenance{solve}
 	s10 := &PipeMaze{solve}
-	solvers := []Solver{Solver(s1), Solver(s2), Solver(s3), Solver(s4), Solver(s5), Solver(s6), Solver(s7), Solver(s8), Solver(s9), Solver(s10)}
+	s11 := &CosmicExpansion{solve}
+	solvers := []Solver{Solver(s1), 
+		Solver(s2), Solver(s3), 
+		Solver(s4), Solver(s5), 
+		Solver(s6), Solver(s7), 
+		Solver(s8), Solver(s9), 
+		Solver(s10), Solver(s11)}
 	return solvers[day-1]
 }
