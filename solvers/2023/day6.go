@@ -1,7 +1,11 @@
+/*---------------------------------------
+Task1: 840336   [nil]   Time: 0s
+Task2: 41382569 [nil]   Time: 46.9754ms
+-----------------------------------------*/
+
 package solvers
 
 import (
-	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -64,6 +68,5 @@ func (waitForIt *WaitForIt) Task1(data string) string {
 func (waitForIt *WaitForIt) Task2(data string) string {
 	re, _ := regexp.Compile(`[[:blank:]]`)
 	data = re.ReplaceAllString(data, "")
-	fmt.Println(data)
 	return waitForIt.Task1(data)
 }
