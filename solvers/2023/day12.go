@@ -1,6 +1,6 @@
 /*------------------------------------------------
-Task1: 7260     [OK]    Time: 2.0348827s
-Task2: 1909291258644    [OK]    Time: 902.9134ms
+Task1: 7260     [nil]    Time: 2.0348827s
+Task2: 1909291258644    [nil]    Time: 902.9134ms
 --------------------------------------------------*/
 /* Note the T2 part of today was solved with much help from forums
 i tried to brute force it but to no luck. Some suggested storing values

@@ -28,12 +28,13 @@ func GetSolver(day int) Solver {
 	s10 := &PipeMaze{solve}
 	s11 := &CosmicExpansion{solve}
 	s12 := &HotSprings{solve}
+	s13 := &PointOfIncidence{solve}
 	solvers := []Solver{Solver(s1), 
 		Solver(s2), Solver(s3), 
 		Solver(s4), Solver(s5), 
 		Solver(s6), Solver(s7), 
 		Solver(s8), Solver(s9), 
 		Solver(s10), Solver(s11),
-	  Solver(s12)}
+	  Solver(s12), Solver(s13)}
 	return solvers[day-1]
 }
