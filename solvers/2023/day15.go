@@ -1,12 +1,11 @@
-/*------------------------------------
+/*--------------------------------------
 Task1: 505379   [OK]    Time: 0s
-
---------------------------------------*/
+Task2: 263211   [OK]    Time: 1.5935ms
+----------------------------------------*/
 
 package solvers
 
 import (
-	"fmt"
 	"strconv"
 )
 
@@ -16,10 +15,10 @@ type LensLibrary struct {
 
 type Box struct {
 	label string
-	lens int
+	lens  int
 }
 
-var Boxes = make(map[int](Box))
+var Boxes = make(map[int]([]Box))
 
 func (lensLibrary *LensLibrary) Task1(data string) string {
 	char_values := []int{}
@@ -39,7 +38,7 @@ func (lensLibrary *LensLibrary) Task1(data string) string {
 	return strconv.Itoa(Sum(char_values))
 }
 
-func (lensLibrary *LensLibrary) Task2(data string) string {
+func (lensLibrary LensLibrary) ReadLensData(data string) {
 	box := 0
 	label := ""
 	lens := ""
@@ -51,17 +50,25 @@ func (lensLibrary *LensLibrary) Task2(data string) string {
 			continue
 		case ',':
 			if adding {
-				if Boxes[box] == nil {
-				  Boxes[box] = make(map[string]int)
+				le, _ := strconv.Atoi(lens)
+				found := false
+				for i, v := range Boxes[box] {
+					if v.label == label {
+						Boxes[box][i].lens = le
+						found = true
+					}
 				}
-				Boxes[box][label], _ = strconv.Atoi(lens)
+				if !found {
+					Boxes[box] = append(Boxes[box], Box{label, le})
+				}
 				adding = false
 			} else if subtracting {
 				if v, ok := Boxes[box]; ok {
-					delete(v, label)
-				}
-				if len(Boxes[box]) == 0 {
-					delete(Boxes, box)
+					for i, b := range v {
+						if b.label == label {
+							Boxes[box] = append(Boxes[box][:i], Boxes[box][i+1:]...)
+						}
+					}
 				}
 				subtracting = false
 			}
@@ -70,8 +77,8 @@ func (lensLibrary *LensLibrary) Task2(data string) string {
 			box = 0
 		case '-':
 			subtracting = true
-    case '=':
-      adding = true
+		case '=':
+			adding = true
 		default:
 			if !adding {
 				label = label + string(r)
@@ -82,20 +89,41 @@ func (lensLibrary *LensLibrary) Task2(data string) string {
 		}
 	}
 	if adding {
-		if Boxes[box] == nil {
-			Boxes[box] = make(map[string]int)
+		le, _ := strconv.Atoi(lens)
+		found := false
+		for i, v := range Boxes[box] {
+			if v.label == label {
+				Boxes[box][i].lens = le
+				found = true
+			}
 		}
-		Boxes[box][label], _ = strconv.Atoi(lens)
+		if !found {
+			Boxes[box] = append(Boxes[box], Box{label, le})
+		}
 		adding = false
 	} else if subtracting {
 		if v, ok := Boxes[box]; ok {
-			delete(v, label)
-		}
-		if len(Boxes[box]) == 0 {
-			delete(Boxes, box)
+			for i, b := range v {
+				if b.label == label {
+					Boxes[box] = append(Boxes[box][:i], Boxes[box][i+1:]...)
+				}
+			}
 		}
 		subtracting = false
 	}
-	fmt.Println(Boxes)
-	return "nil"
+}
+
+func (LensLibrary LensLibrary) CalcFocusPower() int {
+	value := 0
+	for i, b := range Boxes {
+		for j, l := range b {
+			value += (i + 1) * (j + 1) * l.lens
+		}
+	}
+	return value
+}
+
+func (lensLibrary *LensLibrary) Task2(data string) string {
+	lensLibrary.ReadLensData(data)
+	return strconv.Itoa(lensLibrary.CalcFocusPower())
 }

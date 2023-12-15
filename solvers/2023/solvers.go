@@ -30,6 +30,7 @@ func GetSolver(day int) Solver {
 	s12 := &HotSprings{solve}
 	s13 := &PointOfIncidence{solve}
 	s14 := &ParabolicReflectorDish{solve}
+	s15 := &LensLibrary{solve}
 	solvers := []Solver{Solver(s1), 
 		Solver(s2), Solver(s3), 
 		Solver(s4), Solver(s5), 
@@ -37,6 +38,6 @@ func GetSolver(day int) Solver {
 		Solver(s8), Solver(s9), 
 		Solver(s10), Solver(s11),
 	  Solver(s12), Solver(s13),
-	  Solver(s14)}
+	  Solver(s14), Solver(s15)}
 	return solvers[day-1]
 }
