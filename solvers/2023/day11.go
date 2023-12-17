@@ -19,6 +19,19 @@ type Vector struct {
 	y int
 }
 
+func (V Vector) Add(v Vector) Vector {
+	V.x += v.x
+	V.y += v.y
+	return V
+}
+
+func (V Vector) Equal(v Vector) bool {
+	if V.x == v.x && V.y == v.y {
+		return true
+	}
+	return false
+}
+
 type Space struct {
 	char rune
 	v    Vector
