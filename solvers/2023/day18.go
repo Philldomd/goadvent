@@ -1,5 +1,7 @@
-/*---------------------------------
------------------------------------*/
+/*----------------------------------------------
+Task1: 72821    [OK]   Time: 13.3774ms
+Task2: 127844509405501  [OK]    Time: 1.0496ms
+------------------------------------------------*/
 
 package solvers
 
@@ -87,7 +89,7 @@ func (lavaductLagoon LavaductLagoon) CalculateBorders(lava_blueprint []LavaductB
 	if min_row < 0 {
 		min_row = -min_row
 	}
-	return max_row + min_row + 3, max_length + min_length + 3, Vector{min_row, min_length}
+	return max_row + min_row + 3, max_length + min_length + 3, Vector{min_row + 1, min_length + 1}
 }
 
 func (lavaductLagoon LavaductLagoon) DigBorders(lava_blueprint []LavaductBorder, m_row int, m_len int, start_pos Vector) [][]string {
