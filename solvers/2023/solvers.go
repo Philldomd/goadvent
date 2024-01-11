@@ -7,9 +7,9 @@ type Solver interface {
 }
 
 func Sum(arr []int) int {
-  sum := 0
+	sum := 0
 	for _, i := range arr {
-    sum += i
+		sum += i
 	}
 	return sum
 }
@@ -35,15 +35,17 @@ func GetSolver(day int) Solver {
 	s17 := &ClumsyCrucible{solve}
 	s18 := &LavaductLagoon{solve}
 	s19 := &Aplenty{solve}
-	solvers := []Solver{Solver(s1), 
-		Solver(s2), Solver(s3), 
-		Solver(s4), Solver(s5), 
-		Solver(s6), Solver(s7), 
-		Solver(s8), Solver(s9), 
+	s20 := &PulsePropagation{solve}
+	solvers := []Solver{Solver(s1),
+		Solver(s2), Solver(s3),
+		Solver(s4), Solver(s5),
+		Solver(s6), Solver(s7),
+		Solver(s8), Solver(s9),
 		Solver(s10), Solver(s11),
-	  Solver(s12), Solver(s13),
-	  Solver(s14), Solver(s15),
-	  Solver(s16), Solver(s17),
-	  Solver(s18), Solver(s19)}
+		Solver(s12), Solver(s13),
+		Solver(s14), Solver(s15),
+		Solver(s16), Solver(s17),
+		Solver(s18), Solver(s19),
+		Solver(s20)}
 	return solvers[day-1]
 }
