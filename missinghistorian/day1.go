@@ -26,7 +26,7 @@ func (Hysteria *Hysteria) Task1(data string) string {
 			continue
 		}
 		ileft, _ := strconv.Atoi(strings.Split(r,"   ")[0])
-    iright, _ := strconv.Atoi(strings.Split(r, "   ")[1])
+		iright, _ := strconv.Atoi(strings.Split(r, "   ")[1])
 		left = append(left, ileft)
 		right = append(right, iright)
 	}
@@ -35,11 +35,11 @@ func (Hysteria *Hysteria) Task1(data string) string {
 	for i, lval := range left {
 		ret += int(math.Abs(float64(lval - right[i])))
 	}
-  return strconv.Itoa(ret)
+	return strconv.Itoa(ret)
 }
 
 func (Hysteria *Hysteria) Task2(data string) string {
-  var ret = 0
+	var ret = 0
 	rows := strings.Split(data, "\n")
 	var left = make(map[int]int)
 	var right = make(map[int]int)
@@ -60,7 +60,7 @@ func (Hysteria *Hysteria) Task2(data string) string {
 			right[rval] = 1
 		}
 	}
-  for key, val := range left {
+	for key, val := range left {
 		ret += key * val * right[key]
 	}
 	return strconv.Itoa(ret)
