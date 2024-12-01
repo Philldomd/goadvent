@@ -3,7 +3,7 @@ Task1: 12599    [nil]   Time: 0s
 Task2: 8245452805243    [nil]   Time: 8.108ms
 -----------------------------------------------*/
 
-package solvers
+package snowsolver
 
 import (
 	"regexp"

@@ -3,7 +3,7 @@ Task1: 382895070        [nil]   Time: 101.1µs
 Task2: 17729182 [nil]   Time: 1h4m24.4294871s
 -----------------------------------------------*/
 
-package solvers
+package snowsolver
 
 import (
 	"slices"

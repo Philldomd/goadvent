@@ -3,7 +3,7 @@ Task1: 72821    [OK]   Time: 13.3774ms
 Task2: 127844509405501  [OK]    Time: 1.0496ms
 ------------------------------------------------*/
 
-package solvers
+package snowsolver
 
 import (
 	"regexp"

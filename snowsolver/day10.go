@@ -4,7 +4,7 @@ Task1: 6890     [nil]   Time: 5.233704s
 Task2: 453      [nil]   Time: 5.4208927s
 ------------------------------------------*/
 
-package solvers
+package snowsolver
 
 import (
 	"strconv"

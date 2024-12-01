@@ -1,4 +1,4 @@
-package solvers
+package snowsolver
 
 type Solve struct{}
 type Solver interface {

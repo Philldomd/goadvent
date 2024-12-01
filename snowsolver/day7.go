@@ -3,7 +3,7 @@ Task1: 253910319        [nil]   Time: 0s
 Task2: 254083736        [nil]   Time: 817.6µs
 -----------------------------------------------*/
 
-package solvers
+package snowsolver
 
 import (
 	"sort"

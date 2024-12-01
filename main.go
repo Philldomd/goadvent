@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	solvers "goadvent/solvers/2023"
+	nowolvers "goadvent/snowsolver"
 	"goadvent/taskmaster"
 	"os"
 	"strconv"

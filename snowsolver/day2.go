@@ -3,7 +3,7 @@ Task1: 1734     [nil]   Time: 509.3µs
 Task2: 70387    [nil]   Time: 546.1µs
 ---------------------------------------*/
 
-package solvers
+package snowsolver
 
 import (
 	"bufio"

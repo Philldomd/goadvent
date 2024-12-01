@@ -6,7 +6,7 @@ Task2: 1909291258644    [nil]    Time: 902.9134ms
 i tried to brute force it but to no luck. Some suggested storing values
 along the way and then i implemented a DP from an python implementation*/
 
-package solvers
+package snowsolver
 
 import (
 	"strconv"
