@@ -93,12 +93,12 @@ func main() {
         }
       }
     } else {
-      data := `3   4
-4   3
-2   5
-1   3
-3   9
-3   3
+      data := `7 6 4 2 1
+1 2 7 8 9
+9 7 6 2 1
+1 3 2 4 5
+8 6 4 4 1
+1 3 6 7 9
 `
       if task == "1" || task == "0" {
         task1 := missinghistorian.GetSolver(iday).Task1(data)

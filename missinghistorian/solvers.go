@@ -17,6 +17,8 @@ func Sum(arr []int) int {
 func GetSolver(day int) Solver {
   solve := Solve{}
   s1 := &Hysteria{solve}
-  solvers := []Solver{Solver(s1),}
+  s2 := &Rudolf{solve}
+  solvers := []Solver{Solver(s1),
+  Solver(s2)}
   return solvers[day-1]
 }
