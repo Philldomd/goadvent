@@ -18,7 +18,8 @@ func GetSolver(day int) Solver {
   solve := Solve{}
   s1 := &Hysteria{solve}
   s2 := &Rudolf{solve}
+  s3 := &Mullitover{solve}
   solvers := []Solver{Solver(s1),
-  Solver(s2)}
+  Solver(s2), Solver(s3)}
   return solvers[day-1]
 }
