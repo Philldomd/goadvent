@@ -4,6 +4,7 @@ import (
   "fmt"
   snowsolvers "goadvent/snowsolver"
   missinghistorian "goadvent/missinghistorian"
+  decoratingteam "goadvent/decoratingteam"
   "goadvent/taskmaster"
   "os"
   "strconv"
@@ -35,7 +36,8 @@ func main() {
   }
   iday, _ := strconv.Atoi(day)
   fmt.Printf("Welcome to Go Advent! It's day %s, year %s!\n", day, year)
-  if year == "2023" {
+  switch year {
+  case "2023":
     if !test {
       data := taskmaster.GetPussleInput(year, day)
       if task == "1" || task == "0" {
@@ -69,7 +71,7 @@ func main() {
         fmt.Printf("Task2: %s\t[%s]\n", task2, "nil")
       }
     }
-  } else if year == "2024" {
+  case "2024":
     if !test {
       data := taskmaster.GetPussleInput(year, day)
       if task == "1" || task == "0" {
@@ -93,41 +95,47 @@ func main() {
         }
       }
     } else {
-      data := `47|53
-97|13
-97|61
-97|47
-75|29
-61|13
-75|53
-29|13
-97|29
-53|29
-61|53
-97|53
-61|29
-47|13
-75|47
-97|75
-47|61
-75|61
-47|29
-75|13
-53|13
-
-75,47,61,53,29
-97,61,53,29,13
-75,29,13
-75,97,47,61,53
-61,13,29
-97,13,75,29,47
-`
+      data := ``
       if task == "1" || task == "0" {
         task1 := missinghistorian.GetSolver(iday).Task1(data)
         fmt.Printf("Task1: %s\t[%s]\n", task1, "nil")
       }
       if task == "2" || task == "0" {
         task2 := missinghistorian.GetSolver(iday).Task2(data)
+        fmt.Printf("Task2: %s\t[%s]\n", task2, "nil")
+      }
+    }
+  case "2025":
+    if !test {
+      data := taskmaster.GetPussleInput(year, day)
+      if task == "1" || task == "0" {
+        start := time.Now()
+        task1 := decoratingteam.GetSolver(iday).Task1(data)
+        stop := time.Since(start)
+        if send {
+          fmt.Printf("Task1: %s\t[%s]\tTime: %s\n", task1, taskmaster.PostAnswer(year, day, "1", task1), stop)
+        } else {
+          fmt.Printf("Task1: %s\t[%s]\tTime: %s\n", task1, "nil", stop)
+        }
+      }
+      if task == "2" || task == "0" {
+        start := time.Now()
+        task2 := decoratingteam.GetSolver(iday).Task2(data)
+        stop := time.Since(start)
+        if send {
+          fmt.Printf("Task2: %s\t[%s]\tTime: %s\n", task2, taskmaster.PostAnswer(year, day, "2", task2), stop)
+        } else {
+          fmt.Printf("Task2: %s\t[%s]\tTime: %s\n", task2, "nil", stop)
+        }
+      }
+    } else {
+      data := ``
+      if task == "1" || task == "0" {
+        task1 := decoratingteam.GetSolver(iday).Task1(data)
+        fmt.Printf("Task1: %s\t[%s]\n", task1, "nil")
+      }
+      if task == "2" || task == "0" {
+        task2 := decoratingteam.GetSolver(iday).Task2(data)
         fmt.Printf("Task2: %s\t[%s]\n", task2, "nil")
       }
     }

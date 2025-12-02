@@ -95,11 +95,12 @@ func (aplenty Aplenty) findData(values string) {
 }
 
 func (aplenty Aplenty) interpretator(values map[rune]int, function string) bool {
-  if function == "A" {
+  switch function {
+  case "A":
     return true
-  } else if function == "R" {
+  case "R":
     return false
-  } else {
+  default:
     for _, funcs := range function_list[function] {
       if funcs.compare == 0 && funcs.operator == 0 && funcs.which == 0 {
         return aplenty.interpretator(values, funcs.result)

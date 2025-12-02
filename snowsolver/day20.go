@@ -240,9 +240,6 @@ func (pulse *PulsePropagation) Task2(data string) string {
       }
     }
     buttons_pressed = append(buttons_pressed, pressed)
-    for _, value := range machine {
-      value.state = false
-    }
     pressed = 0
   }
   //my gcd was 1 so lcm is just multiply all pressed buttons

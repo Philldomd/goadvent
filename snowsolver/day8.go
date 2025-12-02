@@ -124,11 +124,12 @@ func (hauntedWasteland *HauntedWasteland) CreateNodeList(rows []string) []Node {
     node.L = re.FindString(LR[0])
     node.R = re.FindString(LR[1])
     last_char := string(node.value[2])
-    if last_char == "A" {
+    switch last_char {
+    case "A":
       node.start_stop = 2
-    } else if last_char == "Z" {
+    case "Z":
       node.start_stop = 1
-    } else {
+    default:
       node.start_stop = 0
     }
     nodes = append(nodes, node)
