@@ -43,7 +43,7 @@ func (safeCracker *SafeCracker) Task2(data string) string {
 		a, _ := strconv.Atoi(line[1:])
 		ans += a / 100
 		if line[0] == 'L' {
-	  	a -= a*2
+      a -= a*2
 		}
 		a = a - (a / 100 * 100)
 		stop := start + a

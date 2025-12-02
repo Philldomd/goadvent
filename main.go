@@ -57,7 +57,7 @@ func main() {
         if send {
           fmt.Printf("Task2: %s\t[%s]\tTime: %s\n", task2, taskmaster.PostAnswer(year, day, "2", task2), stop)
         } else {
-          fmt.Printf("Task2: %s\t[%s]\tTime: %s\n", task2, "nil", stop)  
+          fmt.Printf("Task2: %s\t[%s]\tTime: %s\n", task2, "nil", stop)
         }
       }
     } else {
@@ -91,7 +91,7 @@ func main() {
         if send {
           fmt.Printf("Task2: %s\t[%s]\tTime: %s\n", task2, taskmaster.PostAnswer(year, day, "2", task2), stop)
         } else {
-          fmt.Printf("Task2: %s\t[%s]\tTime: %s\n", task2, "nil", stop)  
+          fmt.Printf("Task2: %s\t[%s]\tTime: %s\n", task2, "nil", stop)
         }
       }
     } else {
