@@ -9,6 +9,8 @@ type Solver interface {
 func GetSolver(day int) Solver {
   solve := Solve{}
   s1 := &SafeCracker{solve}
-  solvers := []Solver{Solver(s1)}
+  s2 := &GiftShop{solve}
+  solvers := []Solver{Solver(s1),
+  Solver(s2)}
   return solvers[day-1]
 }
