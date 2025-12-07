@@ -10,7 +10,8 @@ func GetSolver(day int) Solver {
   solve := Solve{}
   s1 := &SafeCracker{solve}
   s2 := &GiftShop{solve}
+  s3 := &Lobby{solve}
   solvers := []Solver{Solver(s1),
-  Solver(s2)}
+  Solver(s2),Solver(s3)}
   return solvers[day-1]
 }
